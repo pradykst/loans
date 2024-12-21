@@ -107,6 +107,27 @@ async function create() {
 
       //code
 
+      const transaction = await prepareContractCall({
+      contract,
+      method:
+        "function requestLoan(uint256 loanAmount, uint256 collateralId, address collateralContract, uint256 loanDuration, address lender)",
+      params: [
+        BigInt(l.value),
+        BigInt(cid.value),
+        cc.value,
+        BigInt(ld.value),
+        la.value,
+      ],
+    });
+        const { transactionHash } = await sendTransaction({
+      transaction,
+      account,
+    });
+    console.log('transactionHash',transactionHash);
+    alert('Loan Requested Successfully');
+
+
+
 
   }
   else {
