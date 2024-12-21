@@ -106,7 +106,7 @@ async function create() {
       console.log(account,'connected succesfully',l,cid,cc,ld,la);
 
       //code
-
+    try{
       const transaction = await prepareContractCall({
       contract,
       method:
@@ -123,23 +123,39 @@ async function create() {
       transaction,
       account,
     });
+
+    if(!transactionHash)
+    {
+      console.log('Transaction Failed');
+      alert('Transaction Failed');
+    } 
+
     console.log('transactionHash',transactionHash);
     alert('Loan Requested Successfully');
-
-
-
-
+  }
+  catch(e)
+  {
+    console.log('Error',e);
+    alert('Error'+e);
+  }
   }
   else {
       console.log('Please install MetaMask');
       alert('Please install MetaMask');
   }
 
+
+
+
+
+
 }
 
 async function repay()
 {
   console.log('from repay',lid);
+
+  //code
   
 
 }
